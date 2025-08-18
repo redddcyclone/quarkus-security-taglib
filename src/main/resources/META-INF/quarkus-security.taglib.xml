@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_4_1.xsd"
+                version="4.1">
+
+    <namespace>quarkus.security</namespace>
+
+    <tag>
+        <description>Tag for Quarkus SecurityIdentity role-based access control.</description>
+        <tag-name>authorize</tag-name>
+        <handler-class>br.com.redcyclone.quarkus.security.taglib.AuthorizeTagHandler</handler-class>
+
+        <attribute>
+            <description>Allows content to be rendered if the user has the role specified here.</description>
+            <name>role</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                Allows content to be rendered if the user has any of the comma-separated roles added here.
+            </description>
+            <name>anyRole</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                Allows content to be rendered if the user has all of the comma-separated roles added here.
+            </description>
+            <name>allRoles</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                Name for a view variable that will contain the result of the role evaluation.
+                This variable can be used in EL instead of repeating the role evaluation multiple times.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Allows content to be rendered if the user is anonymous.</description>
+        <tag-name>isAnonymous</tag-name>
+        <handler-class>br.com.redcyclone.quarkus.security.taglib.AnonymousTagHandler</handler-class>
+    </tag>
+
+    <tag>
+        <description>Allows content to be rendered if the user is authenticated.</description>
+        <tag-name>isAuthenticated</tag-name>
+        <handler-class>br.com.redcyclone.quarkus.security.taglib.AuthenticatedTagHandler</handler-class>
+    </tag>
+
+</facelet-taglib>
