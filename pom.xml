@@ -2,15 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>br.com.redcyclone</groupId>
-    <artifactId>quarkus-security-taglib</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
-    <name>Quarkus Security Facelets Taglib</name>
+    <artifactId>quarkus-security-taglib-parent</artifactId>
+    <version>1.1.0</version>
+    <packaging>pom</packaging>
+    <name>Quarkus Security Facelets Taglib - Parent</name>
     <description>
         Taglib for Jakarta Faces (JSF) role evaluation and conditional rendering based on Quarkus Security roles.
     </description>
+    <modules>
+        <module>deployment</module>
+        <module>runtime</module>
+    </modules>
     <url>https://github.com/redddcyclone/quarkus-security-taglib</url>
     <licenses>
         <license>
@@ -35,65 +38,37 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
 
-        <maven.compiler.release>21</maven.compiler.release>
-
-        <quarkus.version>3.25.3</quarkus.version>
-        <jakarta-faces.version>4.1.2</jakarta-faces.version>
+        <!-- Higher Quarkus versions using MyFaces Extension won't compile a native image as of now-->
+        <quarkus.version>3.23.4</quarkus.version>
+        <jakarta-faces.version>4.0.0</jakarta-faces.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-security</artifactId>
-            <version>${quarkus.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <version>${jakarta-faces.version}</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.faces</groupId>
+                <artifactId>jakarta.faces-api</artifactId>
+                <version>${jakarta-faces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>br.com.redcyclone</groupId>
+                <artifactId>quarkus-security-taglib</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
-                <configuration>
-                    <release>21</release>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.11.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>

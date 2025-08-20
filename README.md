@@ -1,11 +1,9 @@
-# Quarkus Security Taglib
+# Quarkus Security Facelets Taglib
 
 [![Maven Central](https://img.shields.io/maven-central/v/br.com.redcyclone/quarkus-security-taglib)](https://central.sonatype.com/artifact/br.com.redcyclone/quarkus-security-taglib)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 Taglib for **Jakarta Faces (JSF)** that enables conditional rendering of components based on **Quarkus Security** roles, inspired by the Spring Security JSF taglibs.
-
-> ⚠️ **Note**: Native Image compilation is not supported yet.
 
 ## 🚀 Installation
 
@@ -15,7 +13,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
   <groupId>br.com.redcyclone</groupId>
   <artifactId>quarkus-security-taglib</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 

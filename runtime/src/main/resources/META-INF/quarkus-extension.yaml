@@ -1,0 +1,12 @@
+metadata:
+    keywords:
+        - "security"
+        - "taglib"
+        - "authorization"
+        - "authorize"
+        - "roles"
+guide: "https://github.com/redddcyclone/quarkus-security-taglib/blob/main/README.md"
+categories:
+    - "security"
+    - "authorization"
+status: "stable"
